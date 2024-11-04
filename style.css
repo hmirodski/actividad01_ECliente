@@ -1,0 +1,86 @@
+
+body{
+    margin-left: 50px;
+    margin-right: 50px;
+    font-family:sans-serif;
+}
+
+h1{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid gainsboro;
+}
+
+#contenedor{
+    display: flex;
+    flex-direction: row;
+}
+
+#contenedorTabla{
+    margin-top: 50px;
+    width: 70%;
+}
+
+#cesta{
+    width: 30%;
+    background-color: lightgrey;
+    margin-top: 50px;
+    margin-left: 30px;
+}
+
+.mitabla{
+
+table-layout: fixed;
+text-align: left;
+width: 100%;
+border-collapse: collapse;
+
+}
+
+th{
+    padding: 20px;
+    border-bottom:  3px solid gainsboro;
+}
+
+td {
+    padding: 20px;
+    border-bottom: 2px solid gainsboro;
+}
+
+/* No hace el cambio sobre el elemento  */
+#title{
+ font-weight: bold;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input{
+    width: 40px;
+  text-align: center;
+  border: solid 1px black ;
+  padding: 8px 10px;
+  font-size: 16px;
+}
+
+button{
+  width: 40px;
+  text-align: center;
+  border: solid black ;
+  padding: 8px 10px;
+  font-size: 16px;
+
+}
+.midiv{
+    display: inline-block;
+} 

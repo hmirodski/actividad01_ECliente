@@ -1,0 +1,116 @@
+
+    //"Delegacion de eventos" 
+    //Problema: Los elementos que introduje dinamicamente no se les puede agregar ell addEventListener,
+    // aparece error en la consola del chrom (no existen los elementos aun).
+    // Solucion 1:
+    // 1. Propiedad target para determinar el "objeto" que genera el evento (el click en los botones + o -)
+    // https://developer.mozilla.org/en-US/docs/Web/API/Event/target
+
+    // 2. Metodo closest() que encuentra el elemento que se corresponde con el id en css
+
+    // NO USADO: Al ser creados fuera de la funcion CargarProductos no supe capturar el valor que aparece en el recuadro cantidad para poder sacar el total.
+
+
+/*     document.addEventListener('click', function(event) {
+
+
+         //Manipulacion DOM de los botones
+        const fila = event.target.closest('tr');
+
+        //console.log(event);
+
+        if (event.target && event.target.id === "mas") {
+            const cantidadInput = fila.querySelector('.cantidad');
+            cantidadInput.value = parseInt(cantidadInput.value) + 1;
+            //console.log("funciona boton mas")
+            cantidadTotal = cantidadInput.value;
+            //console.log(cantidadTotal)
+        }
+    
+        
+        if (event.target && event.target.id === "menos") {
+            const cantidadInput = fila.querySelector('.cantidad');
+            if (parseInt(cantidadInput.value) >= 1) {  // 
+            cantidadInput.value = parseInt(cantidadInput.value) - 1; 
+            }
+
+        }
+    }); */
+
+
+
+
+
+            // se manipula el DOM
+            //Problemas:
+            // 1. los elementos reproducidos dinamicamente no podian ser capturados por el addeventlistener 
+
+/*             const menos = document.getElementById(`menos${index}`);
+            const mas = document.getElementById(`mas${index}`); */
+            
+
+            /* esperarElemento(`mas${index}`).then((elemento) => {
+                elemento.addEventListener('click', () => {
+                //Capturo el elemento una vez ha llegado al DOM
+                let cantidadAcum = document.getElementById(`cantidad${index}`);
+                let valorActual = parseInt(cantidadAcum.value); // El value es un string, hay que convertirlo a int para acumularlo. comienza en 0 siempre
+                valorActual++; //se acumula con cada click
+                cantidadAcum.value = valorActual;
+                cantidadAcum.innerHTML = valorActual;
+                cantidadTotal = parseFloat(valorActual * producto.price).toFixed(2); // limito los precios a max 2 decimales
+                totalUnidades.innerHTML = cantidadTotal;
+
+                });
+            })
+            .catch((error) => {
+                console.error(error.message);
+            }); */
+
+
+/*             esperarElemento(`menos${index}`).then((elemento) => {
+                elemento.addEventListener('click', () => {
+                //Capturo el elemento una vez ha llegado al DOM
+                let cantidadAcum = document.getElementById(`cantidad${index}`);
+                //Comienzo a contar desde el valor actual en el cuadrito
+                let valorActual = parseInt(cantidadAcum.value); 
+
+                if(valorActual > 0){
+                    // El value es un string, hay que convertirlo a int para acumularlo. comienza en 0 siempre
+                    valorActual--; //se acumula con cada click
+                    cantidadAcum.value = valorActual;
+                    cantidadAcum.innerHTML = valorActual;
+                    cantidadTotal = parseFloat (valorActual * producto.price).toFixed(2);
+                    totalUnidades.innerHTML = cantidadTotal;
+                }
+                });
+            })
+            .catch((error) => {
+                console.error(error.message);
+            }); */
+
+
+            
+    function esperarElemento(ele) {
+        return new Promise((resolve, reject) => {
+            const intervalo = setInterval(() => {
+                const elemento = document.getElementById(ele);
+                if (elemento) {
+                    clearInterval(intervalo); // 
+                    resolve(elemento); //
+                }
+            }, 100); 
+
+            setTimeout(() => {
+                clearInterval(intervalo);
+                reject(new Error(`El elemento "${ele}" no se encontró en el tiempo esperado`));
+            }, 5000); // 
+        });
+    }
+
+    // Creacion botones en el dom con index
+
+      let botonMenos = `<button id="menos${index}"> - </button>`;
+            let botonMas = `<button id="mas${index}"> + </button>`;
+            let cuadroCantidad = `<input type="number" class="cantidad" id="cantidad${index}" value="0" min="0" max="99"></input>`;
+            cantidadColumna2.innerHTML = botonMenos + " " + cuadroCantidad+ " " + botonMas;
+             
